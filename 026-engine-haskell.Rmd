@@ -1,0 +1,16 @@
+---
+title: "Haskell knitr"
+author: "Robert A. Stevens"
+date: "November 13, 2014"
+output: html_document
+---
+
+https://raw.githubusercontent.com/yihui/knitr-examples/master/026-engine-haskell.Rmd
+
+Does Haskell work with **knitr**?
+
+Note we have to specify the compiler manually, e.g. `engine.path='ghc'` (`haskell` itself may not exist as an executable program).
+
+```{r test-haskell, engine='haskell', engine.path='ghc', cache=TRUE}
+[x | x <- [1..10], odd x]
+```

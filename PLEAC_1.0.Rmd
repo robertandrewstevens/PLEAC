@@ -1,0 +1,103 @@
+---
+title: "PLEAC_1.0"
+author: "Robert A. Stevens"
+date: "August 5, 2014"
+output: html_document
+---
+
+http://pleac.sourceforge.net/pleac_perl.data
+
+PLEAC_WEB
+
+http://www.perl.org/
+
+PLEAC_1.0
+
+Check that RMarkdown works and finds perl:
+
+```{r, comment=NA}
+# https://support.rstudio.com/hc/communities/public/questions/202705076-R-Markdown-File-Not-Knitting-Since-Recent-RStudio-Update
+library(knitr) # added to see if it helps - and it did!
+# should exist
+Sys.which('perl')
+```
+
+Check example as-is:
+
+```{r, engine='perl', comment=NA}
+#-----------------------------
+$string = '\n';                     # two characters, \ and an n
+$string = 'Jon \'Maddog\' Orwant';  # literal single quotes
+#-----------------------------
+$string = "\n";                     # a "newline" character
+$string = "Jon \"Maddog\" Orwant";  # literal double quotes
+#-----------------------------
+$string = q/Jon 'Maddog' Orwant/;   # literal single quotes
+#-----------------------------
+$string = q[Jon 'Maddog' Orwant];   # literal single quotes
+$string = q{Jon 'Maddog' Orwant};   # literal single quotes
+$string = q(Jon 'Maddog' Orwant);   # literal single quotes
+$string = q<Jon 'Maddog' Orwant>;   # literal single quotes
+#-----------------------------
+$a = <<"EOF";
+This is a multiline here document
+terminated by EOF on a line by itself
+EOF
+#-----------------------------
+```
+
+Add 'print' statements to see results and remove comment "lines":
+
+```{r, engine='perl', comment=NA}
+$string = '\n';                     # two characters, \ and an n
+print $string;
+$string = 'Jon \'Maddog\' Orwant';  # literal single quotes
+print $string;
+$string = "\n";                     # a "newline" character
+print $string;
+$string = "Jon \"Maddog\" Orwant";  # literal double quotes
+print $string;
+$string = q/Jon 'Maddog' Orwant/;   # literal single quotes
+print $string;
+$string = q[Jon 'Maddog' Orwant];   # literal single quotes
+print $string;
+$string = q{Jon 'Maddog' Orwant};   # literal single quotes
+print $string;
+$string = q(Jon 'Maddog' Orwant);   # literal single quotes
+print $string;
+$string = q<Jon 'Maddog' Orwant>;   # literal single quotes
+print $string;
+$a = <<"EOF";
+This is a multiline here document
+terminated by EOF on a line by itself
+EOF
+print $a;
+```
+
+Now try in R:
+
+```{r, comment=NA}
+string <- '\n'                      # two characters, \ and an n
+cat(string)
+string = 'Jon \'Maddog\' Orwant'    # literal single quotes
+cat(string)
+string <- "\n"                      # a "newline" character
+cat(string)
+string <- "Jon \"Maddog\" Orwant"   # literal double quotes
+cat(string)
+string <- "Jon 'Maddog' Orwant"     # literal single quotes
+cat(string)
+string <- 'Jon "Maddog" Orwant'     # literal single -> double quotes
+cat(string)
+string <- "Jon \'Maddog\' Orwant"   # literal single quotes
+cat(string)
+string <- paste("Jon", dQuote('Maddog'), "Orwant")  # literal single -> double quotes
+cat(string)
+string <- paste("Jon", sQuote('Maddog'), "Orwant")  # literal single quotes
+cat(string)
+a <- paste(
+  "This is a multiline here document",
+  "terminated by EOF on a line by itself"
+)
+cat(a)
+```

@@ -1,0 +1,16 @@
+---
+title: "PLEAC00"
+author: "Robert A. Stevens"
+date: "November 13, 2014"
+output: html_document
+---
+
+http://pleac.sourceforge.net
+
+http://yihui.name/knitr/demo/engines/
+perl.Rmd    - 100.00%
+python.Rmd  -  85.43%
+ruby.Rmd    -  65.57%
+haskell.Rmd -  29.14%
+R of course -   1.43%
+bash.Rmd    -   0.43%
